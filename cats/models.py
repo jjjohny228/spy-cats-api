@@ -33,9 +33,10 @@ class Cat(models.Model):
     def __str__(self):
         return self.name
 
+
 class Mission(models.Model):
-    cat = models.ForeignKey(Cat, on_delete=models.PROTECT, related_name='missions')
-    complete_state = models.BooleanField()
+    cat = models.ForeignKey(Cat, on_delete=models.PROTECT, related_name='missions',  null=True, blank=True)
+    complete_state = models.BooleanField(default=False)
 
 
 class Target(models.Model):
@@ -43,7 +44,7 @@ class Target(models.Model):
     name = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
     notes = models.TextField()
-    complete_state = models.BooleanField()
+    complete_state = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
